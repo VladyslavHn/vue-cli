@@ -9,7 +9,8 @@
                 <div class="apartments-item__rating">
                     <StarRating :rating="rating" />
                 </div>
-                <div class="apartments-item__price">CZK {{ price }}</div>
+                <div class="apartments-item__price">UAH {{ price }}</div>
+                <a href="https://facebook.com" @click.prevent.stop="handleLinkClick">facebook</a>
             </div>
         </div>
     </div>
@@ -41,6 +42,15 @@ export default {
             default: '',
         },
     },
+    methods: {
+        log(index, event) {
+            console.log(index);
+            console.log(event);
+        },
+        handleLinkClick() {
+            console.log('facebook clicked');
+        }
+    }
 }
 </script>
 
@@ -49,6 +59,7 @@ export default {
     position: relative;
     max-width: 350px;
     padding: 0 15px;
+    margin-bottom: 30px;
 
     &__inner {
         position: relative;
@@ -74,7 +85,7 @@ export default {
 
     &__description {
         margin-bottom: 20px;
-        max-height: calc(1em * 1.4 * 3) ;
+        max-height: calc(1em * 1.4 * 3);
         overflow: hidden;
     }
 

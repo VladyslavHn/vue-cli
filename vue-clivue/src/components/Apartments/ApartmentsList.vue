@@ -1,35 +1,29 @@
 <template>
-    <PageContainer>
+    <Container>
+        <slot name="title"></slot>
         <div class="apartments-list">
-            <ApartmentsItem v-for="{ id, descr, rating, price } in items" 
-            :key="id" 
-            :descr="descr" 
-            :rating="rating"
-            :price="price" 
-            class="apartments-list__item" 
-            />
+            <template v-for="apartment in items">
+                <slot name="apartment" v-bind:apartment="apartment"></slot>
+            </template>
         </div>
-    </PageContainer>
+    </Container>
 </template>
 
 <script>
+import Container from '../shared/Container'
 
-import ApartmentsItem from './ApartmentsItem'
-import PageContainer from '../shared/PageContainer'
-
-    export default {
-    name: 'ApartmentItem',
+export default {
+    name: 'ApartmentsList',
     components: {
-        ApartmentsItem,
-        PageContainer
+        Container,
     },
-    props:{
+    props: {
         items: {
             type: Array,
-            default: () => []
-        }
-    }
-    }
+            default: () => [],
+        },
+    },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -38,9 +32,5 @@ import PageContainer from '../shared/PageContainer'
     flex-wrap: wrap;
     margin-left: -15px;
     margin-right: -15px;
-
-    &__item {
-        margin-bottom: 30px;
-    }
 }
 </style>
